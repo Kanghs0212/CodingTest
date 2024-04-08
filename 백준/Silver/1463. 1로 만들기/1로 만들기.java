@@ -6,6 +6,9 @@ public class Main {
     static Integer[] dp = new Integer[1000001];
     public static int find(int X){
         dp[1]=0;
+        dp[2]=1;
+        dp[3]=1;
+        dp[4]=2;
         dp[5]=3;
         if(dp[X]==null){
             int first=find(X/3)+X%3+1;
@@ -20,17 +23,6 @@ public class Main {
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         StringTokenizer st = new StringTokenizer(br.readLine());
         int N = Integer.parseInt(st.nextToken());
-        int index=1;
-        for (int i = 3; i < 1000000; i*=3) {
-            dp[i]=index;
-            index++;
-        }
-        index=1;
-        for (int i = 2; i < 1000000; i*=2) {
-            dp[i]=index;
-            index++;
-        }
         System.out.println(find(N));
-
     }
 }
