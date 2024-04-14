@@ -18,8 +18,9 @@ public class Main {
     static int[] dy = {0,1,0,-1};
     static char[][] map;
     static int best=0;
+    static HashMap<Character, Integer> hash= new HashMap<>();
 
-    public static void dfs(int x ,int y,int count, HashMap<Character, Integer> hash){
+    public static void dfs(int x ,int y,int count){
         if(best<count)
             best=count;
 
@@ -31,7 +32,7 @@ public class Main {
             if(!check[nx][ny] && hash.getOrDefault(map[nx][ny],0)==0){
                 check[nx][ny]=true;
                 hash.put(map[nx][ny], hash.getOrDefault(map[nx][ny],0)+1);
-                dfs(nx,ny, count+1, hash);
+                dfs(nx,ny, count+1);
                 hash.put(map[nx][ny], hash.getOrDefault(map[nx][ny],0)-1);
                 check[nx][ny]=false;
             }
@@ -57,9 +58,8 @@ public class Main {
         }
 
         check[0][0]=true;
-        HashMap<Character, Integer> hash= new HashMap<>();
         hash.put(map[0][0],1);
-        dfs(0,0,1,hash);
+        dfs(0,0,1);
 
         System.out.println(best);
 
